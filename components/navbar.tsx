@@ -264,7 +264,7 @@ export const Navbar = () => {
         </NavbarContent>
 
         <NavbarMenu>
-          {searchInput}
+          <div className="my-auto">{searchInput}</div>
 
           <div className="mx-4 mt-6 flex flex-col gap-4">
             {siteConfig.navMenuItems.map((item, index) => (

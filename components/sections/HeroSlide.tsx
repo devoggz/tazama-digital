@@ -272,7 +272,7 @@ const HeroSlide = () => {
               className="flex flex-col sm:flex-row justify-center gap-4 md:justify-start pt-4"
             >
               <MyButton onPress={onOpen} color="redglass">
-                Get Started
+                Get a Quote Today!
                 <ArrowRight />
               </MyButton>
               <Modal
@@ -286,7 +286,7 @@ const HeroSlide = () => {
                   {(onClose) => (
                     <>
                       <ModalHeader className="text-xl font-bold">
-                        Add Your Print Details
+                        Get Started
                       </ModalHeader>
                       <ModalBody className="pb-6">
                         <MultiStepForm />
@@ -298,28 +298,6 @@ const HeroSlide = () => {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Mock Modal for demo */}
-        {/* {isOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
-            onClick={() => setIsOpen(false)}
-          >
-            <div
-              className="bg-white rounded-lg p-8 max-w-md mx-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h2 className="text-xl font-bold mb-4">Add Your Print Details</h2>
-              <p className="text-gray-600 mb-4">Form would go here...</p>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="bg-red-600 text-white px-4 py-2 rounded-sm"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )} */}
       </div>
     </section>
   );
