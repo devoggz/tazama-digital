@@ -76,7 +76,7 @@ const HeroTwo = () => {
             >
               Digital & Large Format Printing{" "}
               <span className="block text-3xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-white/90 mt-2">
-                in Nairobi, Kenya
+                in Nairobi, Kenya...
               </span>
             </motion.h1>
 
