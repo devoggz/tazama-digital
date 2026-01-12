@@ -1,0 +1,135 @@
+"use client";
+import { motion, Variants } from "framer-motion";
+import { PrintIcon, BoltIcon, ClockIcon } from "../icons";
+
+const sectionFade: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const principleVariant: Variants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+export default function About() {
+  return (
+    <motion.section
+      variants={sectionFade}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      className="py-28 bg-zinc-50 shadow-xl rounded-sm mb-12"
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 justify-between gap-16 lg:gap-24">
+        {/* Copy */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="space-y-6"
+        >
+          <motion.p
+            variants={fadeUp}
+            className="uppercase font-bold tracking-widest text-xs text-[#F31260]"
+          >
+            About Us
+          </motion.p>
+
+          <motion.h2
+            variants={fadeUp}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-zinc-900"
+          >
+            Built for brands that respect the details
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            className="text-base md:text-lg text-zinc-600 max-w-lg leading-relaxed"
+          >
+            We value colour accuracy, material consistency, and finishing
+            discipline—because print is still physical, and mistakes are
+            expensive.
+          </motion.p>
+        </motion.div>
+
+        {/* Principles */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="space-y-8 lg:space-y-10"
+        >
+          <Principle
+            icon={<PrintIcon size={30} />}
+            title="Quality Printing"
+            text="Every job follows a defined production workflow—no improvising at the last minute."
+          />
+          <Principle
+            icon={<BoltIcon size={30} />}
+            title="Haraka Delivery"
+            text="Fast turnaround is designed into our systems, not forced by panic."
+          />
+          <Principle
+            icon={<ClockIcon size={30} />}
+            title="All-In-One Services"
+            text="Digital, large format, finishing, and branding—under one roof."
+          />
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
+
+function Principle({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <motion.div variants={principleVariant} className="flex gap-6 items-start">
+      <div className="w-16 h-16 text-[#F31260] rounded-xl bg-white shadow-md flex items-center justify-center flex-shrink-0">
+        {icon}
+      </div>
+      <div>
+        <h3 className="font-bold text-lg text-zinc-900">{title}</h3>
+        <p className="text-sm md:text-base text-zinc-600 mt-1 max-w-md leading-relaxed">
+          {text}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
