@@ -4,11 +4,13 @@ import SubscribeNewsletter from "@/components/sections/SubscribeNewsletter";
 import LargeFormat from "@/components/sections/LargeFormat";
 import LogoTicker from "@/components/sections/LogoTicker";
 import HeroTwo from "@/components/sections/HeroTwo";
+import HeroSlide from "@/components/sections/HeroSlide";
 
 export default function Home() {
   return (
     <main>
-      <HeroTwo />
+      <HeroSlide />
+      {/* <HeroTwo /> */}
       <About />
       <DigitalPrinting />
       <SubscribeNewsletter />

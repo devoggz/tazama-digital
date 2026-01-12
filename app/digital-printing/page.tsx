@@ -50,11 +50,12 @@ export default function DigitalPrintingCategories() {
                     href={href}
                     color="danger"
                     variant="bordered"
+                    className="border-1"
                     fullWidth
                     endContent={<ArrowRight size={16} />}
                   >
                     <span className="flex w-full items-center justify-between">
-                      <span className="font-semibold text-sm">
+                      <span className="font-light text-sm ">
                         View Collection
                       </span>
                     </span>

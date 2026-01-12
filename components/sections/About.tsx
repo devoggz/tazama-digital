@@ -1,6 +1,8 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import { PrintIcon, BoltIcon, ClockIcon } from "../icons";
+import { Button } from "@heroui/react";
+import { ArrowRight, ArrowRightIcon } from "lucide-react";
 
 const sectionFade: Variants = {
   hidden: { opacity: 0 },
@@ -75,10 +77,24 @@ export default function About() {
             variants={fadeUp}
             className="text-base md:text-lg  max-w-lg leading-relaxed"
           >
-            We value colour accuracy, material consistency, and finishing
-            discipline—because print is still physical, and mistakes are
-            expensive.
+            Tazama Digital Studios is your trusted creative partner in Nairobi,
+            Kenya. We deliver precision, innovation, and exceptional customer
+            service for all printing needs – from startups to established
+            brands.
           </motion.p>
+          <Button
+            color="danger"
+            size="lg"
+            radius="sm"
+            variant="light"
+            fullWidth
+            endContent={<ArrowRight size={16} />}
+            className="mt-16"
+          >
+            <span className="flex w-full items-center justify-between ">
+              <span className=" text-sm">View Collection</span>
+            </span>
+          </Button>
         </motion.div>
 
         {/* Principles */}
@@ -96,13 +112,13 @@ export default function About() {
           />
           <Principle
             icon={<BoltIcon size={30} />}
-            title="Haraka Delivery"
-            text="Fast turnaround is designed into our systems, not forced by panic."
+            title="Fast & Reliable Delivery"
+            text="Timely service with haraka options to meet tight deadlines."
           />
           <Principle
             icon={<ClockIcon size={30} />}
-            title="All-In-One Services"
-            text="Digital, large format, finishing, and branding—under one roof."
+            title="All-in-One Solutions"
+            text="Digital and large format printing under one roof in Nairobi."
           />
         </motion.div>
       </div>

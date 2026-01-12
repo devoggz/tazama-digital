@@ -10,6 +10,11 @@ export const MyButton = extendVariants(Button, {
       tazamablue: "text-[#fff] bg-[#0099FF]",
       orange: "bg-[#ff8c00] text-[#fff]",
       violet: "bg-[#8b5cf6] text-[#fff]",
+
+      redglass:
+        "text-white bg-red-600/30 backdrop-blur-sm border border-red-400/40 hover:bg-red-600/50 transition-all duration-300 [&>span]:overflow-hidden [&_svg]:transition-all [&_svg]:duration-300 [&_svg]:opacity-0 [&_svg]:translate-x-[-10px] hover:[&_svg]:opacity-100 hover:[&_svg]:translate-x-0",
+      glass:
+        "text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300 [&>span]:overflow-hidden [&_svg]:transition-all [&_svg]:duration-300 [&_svg]:opacity-0 [&_svg]:translate-x-[-10px] hover:[&_svg]:opacity-100 hover:[&_svg]:translate-x-0",
     },
     isDisabled: {
       true: "bg-[#eaeaea] text-[#000] opacity-50 cursor-not-allowed",

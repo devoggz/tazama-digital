@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import heroImage from "@/public/images/eyes4.jpg";
+import heroImage from "@/public/images/parrot.jpg";
 import Image from "next/image";
 import {
   Button,
@@ -24,7 +24,7 @@ const HeroTwo = () => {
   const router = useRouter();
   return (
     <section className="relative overflow-hidden rounded-md">
-      <div className=" max-w-7xl px-6 mx-auto py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md  items-center h-min ">
+      <div className=" max-w-7xl px-6 mx-auto py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md  items-center h-auto ">
         {/* Background image with zoom effect */}
         <motion.div
           initial={{ scale: 1 }}
@@ -75,7 +75,7 @@ const HeroTwo = () => {
             >
               Digital & Large Format Printing{" "}
               <span className="block text-3xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-white/90 mt-2">
-                in Nairobi, Kenya
+                Fast Delivery Across Nairobi
               </span>
             </motion.h1>
 
@@ -103,6 +103,7 @@ const HeroTwo = () => {
                 radius="sm"
                 size="md"
                 color="danger"
+                className="text-sm md:text-base font-light text-white px-5 py-2 min-w-fit"
                 endContent={<ArrowRightIcon />}
               >
                 Get a Quote
