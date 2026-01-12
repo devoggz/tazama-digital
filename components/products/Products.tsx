@@ -131,7 +131,7 @@ export default function ProductsBento() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="max-w-7xl mx-auto px-4 md:px-6 py-20"
+      className="max-w-7xl mx-auto md:px-6 py-20"
     >
       {/* Header */}
       <div className="text-left mb-12 max-w-7xl flex items-center justify-between gap-2">
@@ -153,17 +153,6 @@ export default function ProductsBento() {
             businesses
           </motion.p>
         </div>
-        {/* <div className="">
-          <Button
-            radius="sm"
-            color="danger"
-            variant="bordered"
-            onPress={handleViewCart}
-            startContent={<ShoppingCart size={20} />}
-          >
-            View Cart
-          </Button>
-        </div> */}
       </div>
 
       {/* Grid */}
@@ -172,7 +161,7 @@ export default function ProductsBento() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6"
       >
         {products.map((product) => (
           <motion.div key={product.id} variants={fadeUp}>

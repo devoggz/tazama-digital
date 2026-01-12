@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Tazama",
+  name: "Tazama Digital Studios",
   description: "Digital Studios",
   navItems: [
     {

@@ -16,7 +16,7 @@ import {
 import NextLink from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, FacebookIcon, Instagram, ShoppingCart } from "lucide-react";
+import { Facebook, Instagram, ShoppingCart } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -48,6 +48,13 @@ export const Navbar = () => {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
   const [cartCount, setCartCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Wait for component to mount before showing theme-dependent content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Update cart count from localStorage
   useEffect(() => {
@@ -98,7 +105,8 @@ export const Navbar = () => {
 
   return (
     <header className="w-full sticky top-0 z-50">
-      <div className="bg-gradient-to-r from-purple-500 via-pink-600 to-red-500 text-neutral-100 text-xs">
+      {/* Top Bar - Hidden on mobile, visible on md and above */}
+      <div className="hidden md:block bg-gradient-to-r from-purple-500 via-pink-600 to-red-500 text-neutral-100 text-xs">
         <div className="max-w-7xl mx-auto px-6 py-2 flex gap-6 justify-between items-center">
           <div className="">
             <div className="flex items-center gap-4">
@@ -111,13 +119,11 @@ export const Navbar = () => {
             </div>
           </div>
           <div>
-            <div className="hidden md:block">
-              <div className="flex cursor-pointer items-center gap-2">
-                {/* <span className="font-bold">Follow Us</span> */}
-                <TwitterIcon size={16} />
-                <Facebook size={16} />
-                <Instagram size={16} />
-              </div>
+            <div className="flex cursor-pointer items-center gap-2">
+              {/* <span className="font-bold">Follow Us</span> */}
+              <TwitterIcon size={16} />
+              <Facebook size={16} />
+              <Instagram size={16} />
             </div>
           </div>
         </div>
@@ -127,23 +133,29 @@ export const Navbar = () => {
         isBordered
         maxWidth="xl"
         position="sticky"
-        className="top-[32px] bg-background/80 backdrop-blur-md py-2"
+        className="md:top-[32px] bg-background/80 backdrop-blur-md py-2"
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
       >
         {/* Brand */}
         <NavbarContent justify="start" className="basis-1/4">
           <NavbarBrand>
             <NextLink href="/" className="flex items-center gap-2">
-              <Image
-                src={
-                  resolvedTheme === "dark"
-                    ? "/images/logo-W.svg"
-                    : "/images/logo-3.svg"
-                }
-                alt="Tazama Logo"
-                width={260}
-                height={100}
-                priority
-              />
+              {mounted ? (
+                <Image
+                  src={
+                    resolvedTheme === "dark"
+                      ? "/images/logo-W.svg"
+                      : "/images/logo-3.svg"
+                  }
+                  alt="Tazama Logo"
+                  width={260}
+                  height={100}
+                  priority
+                />
+              ) : (
+                <div style={{ width: 260, height: 100 }} />
+              )}
             </NextLink>
           </NavbarBrand>
         </NavbarContent>
@@ -261,28 +273,26 @@ export const Navbar = () => {
                   href={item.href}
                   size="sm"
                   className="uppercase tracking-wide"
+                  onPress={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               </NavbarMenuItem>
             ))}
-
-            {/* Cart Link in Mobile Menu */}
-            <NavbarMenuItem>
-              <Link
-                href="/shopping-cart"
-                size="sm"
-                className="uppercase tracking-wide flex items-center gap-2"
-              >
-                <ShoppingCart size={16} />
-                Shopping Cart
-                {cartCount > 0 && (
-                  <span className="bg-danger text-white text-xs px-2 py-0.5 rounded-full">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-            </NavbarMenuItem>
+            <Button
+              onPress={() => {
+                setIsMenuOpen(false);
+                router.push("/dashboard");
+              }}
+              radius="sm"
+              color="danger"
+              size="md"
+              variant="bordered"
+              className="text-sm border-1.5"
+            >
+              Login
+              <UserIconV size={24} />
+            </Button>
 
             <div className="pt-4 border-t border-divider">
               <ThemeSwitch />

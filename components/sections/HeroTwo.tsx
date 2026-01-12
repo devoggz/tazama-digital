@@ -25,7 +25,7 @@ const HeroTwo = () => {
   const router = useRouter();
   return (
     <section className="relative overflow-hidden rounded-md">
-      <div className=" max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md mb-16 items-center h-min">
+      <div className=" max-w-7xl mx-auto py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md mb-16 items-center h-min">
         {/* Background image with zoom effect */}
         <motion.div
           initial={{ scale: 1 }}

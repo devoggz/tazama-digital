@@ -115,7 +115,7 @@ const LargeFormat = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="max-w-7xl mx-auto mb-16 px-4"
+      className="max-w-7xl mx-auto mb-16"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-xl min-h-[600px] rounded-sm">
         {/* Left Panel - Content */}

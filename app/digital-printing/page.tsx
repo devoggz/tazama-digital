@@ -7,7 +7,7 @@ import { digitalPrintingData } from "@/app/data/digital-printing";
 
 export default function DigitalPrintingCategories() {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
+    <section className="max-w-7xl mx-auto py-20">
       <div className="flex items-center flex-col mb-14 max-w-7xl text-center">
         <p className="text-sm font-bold uppercase tracking-widest text-danger mb-3">
           Digital Printing

@@ -18,7 +18,7 @@ export default function CategoryPage({ params }: Props) {
   if (!category) notFound();
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
+    <section className="max-w-7xl mx-auto  py-20">
       <div className="mb-14">
         <h1 className="text-4xl md:text-5xl font-bold  mb-4">
           {category.title}

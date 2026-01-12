@@ -36,7 +36,7 @@ function SubscribeNewsletter() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="max-w-7xl mx-auto mb-16 px-4"
+      className="max-w-7xl mx-auto mb-16"
     >
       <div className="bg-gradient-to-r from-purple-500 via-pink-600 to-red-500 p-8 md:p-12 lg:p-14 text-white flex flex-col lg:flex-row items-center justify-between gap-8 md:gap-10 rounded-sm shadow-2xl">
         {/* Content */}

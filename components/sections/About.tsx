@@ -66,14 +66,14 @@ export default function About() {
 
           <motion.h2
             variants={fadeUp}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-zinc-900"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight "
           >
             Built for brands that respect the details
           </motion.h2>
 
           <motion.p
             variants={fadeUp}
-            className="text-base md:text-lg text-zinc-600 max-w-lg leading-relaxed"
+            className="text-base md:text-lg  max-w-lg leading-relaxed"
           >
             We value colour accuracy, material consistency, and finishing
             discipline—because print is still physical, and mistakes are
@@ -125,8 +125,8 @@ function Principle({
         {icon}
       </div>
       <div>
-        <h3 className="font-bold text-lg text-zinc-900">{title}</h3>
-        <p className="text-sm md:text-base text-zinc-600 mt-1 max-w-md leading-relaxed">
+        <h3 className="font-bold text-lg">{title}</h3>
+        <p className="text-sm md:text-base mt-1 max-w-md leading-relaxed">
           {text}
         </p>
       </div>

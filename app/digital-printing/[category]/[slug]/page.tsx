@@ -32,7 +32,7 @@ export default async function ProductDetailPage({
   if (!category || !product) notFound();
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20">
+    <section className="max-w-7xl mx-auto py-20">
       {/* Header */}
       <div className="mb-12 max-w-3xl">
         <p className="text-sm uppercase tracking-widest text-[#F31260] font-bold mb-2">
