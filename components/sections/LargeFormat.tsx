@@ -5,7 +5,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 import { button as buttonStyles } from "@heroui/theme";
 
-import { ArrowIcon, CircleLeft, CircleRight } from "../icons";
+import { CircleLeft, CircleRight } from "../icons";
 import {
   Modal,
   ModalContent,
@@ -15,16 +15,16 @@ import {
   ModalHeader,
   Link,
 } from "@heroui/react";
-import DigitalForm from "../Calculators/DigitalForm";
-import { ArrowBigRight, ArrowUpRight, PrinterCheckIcon } from "lucide-react";
+import { ArrowUpRight, PrinterCheckIcon } from "lucide-react";
 import MultiStepForm from "../forms/MultiStepForm";
+import { MyButton } from "../Button";
 
 const services = [
   {
-    service: "Rollup Banners",
+    service: "Canvas Prints",
     description:
-      "Portable and professional displays perfect for events, trade shows, and retail spaces.",
-    image: "/images/rollup4.jpg",
+      "Gallery-quality canvas prints that bring your images to life with vibrant colors.",
+    image: "/images/canvas.jpg",
   },
   {
     service: "Floor Graphics",
@@ -39,15 +39,16 @@ const services = [
     image: "/images/vehicle2.jpeg",
   },
   {
-    service: "Canvas Prints",
+    service: "Rollup Banners",
     description:
-      "Gallery-quality canvas prints that bring your images to life with vibrant colors.",
-    image: "/images/canvas.jpg",
+      "Portable and professional displays perfect for events, trade shows, and retail spaces.",
+    image: "/images/rollup4.jpg",
   },
+
   {
     service: "Wallpapers",
     description:
-      "Gallery-quality canvas prints that bring your images to life with vibrant colors.",
+      "Custom wallpapers that transform spaces with stunning visuals and durable materials.",
     image: "/images/wall.jpg",
   },
 ];
@@ -116,21 +117,23 @@ const LargeFormat = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="max-w-7xl mx-auto mb-16"
+      className="max-w-7xl mx-auto mb-16 sm:px-6"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-xl min-h-[600px] rounded-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-xl rounded-lg bg-white dark:bg-zinc-900">
         {/* Left Panel - Content */}
         <motion.div
           variants={contentSlide}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-zinc-50 text-zinc-900 p-8 lg:p-12 flex flex-col justify-between border-r border-zinc-200"
+          className=" lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 min-h-[400px] lg:min-h-[600px]"
         >
           <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-zinc-600">
+            <p className="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-zinc-100">
               Large Format
-              <span className="block font-light mt-1">Printing Services</span>
+              <span className="block font-light mt-1 text-zinc-600 dark:text-zinc-400">
+                Printing Services
+              </span>
             </p>
           </div>
 
@@ -141,36 +144,56 @@ const LargeFormat = () => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6 flex-1 flex flex-col justify-center"
             >
-              <span className="inline-block h-1 w-16 rounded-full mt-8 bg-[#F31260]" />
+              <span className="inline-block h-1 w-16 rounded-full bg-[#F31260]" />
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 {current.service}
               </h2>
 
-              <p className="text-base md:text-lg text-zinc-700 leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md">
                 {current.description}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Button
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="mt-6 sm:mt-8"
+          >
+            <MyButton
               onPress={onOpen}
-              color="danger"
-              size="lg"
-              fullWidth
+              color="glass"
+              size="xl"
               radius="sm"
+              fullWidth
               endContent={<PrinterCheckIcon size={18} />}
-              className="font-semibold mt-8 mb-8"
+              className="font-semibold"
             >
-              <span className="flex w-full items-center justify-between">
-                <span className="font-semibold text-sm">
-                  Create your Order Now
-                </span>
-              </span>{" "}
-            </Button>
+              Create your Order Now
+            </MyButton>
+            <Modal
+              radius="sm"
+              isOpen={isOpen}
+              onOpenChange={onOpenChange}
+              placement="center"
+              size="lg"
+            >
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="text-xl font-bold">
+                      Add Your Print Details
+                    </ModalHeader>
+                    <ModalBody className="pb-6">
+                      <MultiStepForm />
+                    </ModalBody>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
           </motion.div>
         </motion.div>
 
@@ -180,10 +203,10 @@ const LargeFormat = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative bg-black flex items-center justify-center overflow-hidden min-h-[400px] lg:min-h-[600px]"
+          className="relative bg-black flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]"
         >
-          {/* Image Container - Hidden on mobile, visible on lg+ */}
-          <div className=" lg:block absolute inset-0">
+          {/* Image Container */}
+          <div className="absolute inset-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.image}
@@ -200,18 +223,20 @@ const LargeFormat = () => {
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </motion.div>
             </AnimatePresence>
           </div>
 
-          <div className="absolute inline-flex top-4 right-4 ">
+          {/* View All Button */}
+          <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
             <Link
               isExternal
               className={buttonStyles({
-                radius: "full", // ← changed to full
-                variant: "flat", // flat works better with custom bg
+                radius: "full",
+                variant: "flat",
                 class:
-                  "text-sm md:text-base font-light text-white bg-white/20 backdrop-blur-sm border border-white/30  px-5 py-2 min-w-fit",
+                  "text-xs sm:text-sm font-light text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 px-3 sm:px-4 py-2 min-w-fit",
               })}
               href="/large-format-printing"
             >
@@ -221,7 +246,7 @@ const LargeFormat = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2 bg-black/60 rounded-lg backdrop-blur-md p-2">
+          <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 z-20 flex items-center gap-2 bg-black/60 rounded-full backdrop-blur-md p-1.5 sm:p-2">
             <Button
               onPress={handlePrev}
               isIconOnly
@@ -244,30 +269,22 @@ const LargeFormat = () => {
               <CircleRight size={28} color="white" />
             </Button>
           </div>
+
+          {/* Mobile Service Indicator */}
+          <div className="lg:hidden absolute bottom-4 left-4 z-20 flex gap-1.5">
+            {services.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-1.5 rounded-full transition-all ${
+                  currentIndex === index ? "w-8 bg-white" : "w-1.5 bg-white/40"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </motion.div>
       </div>
-
-      {/* Modal */}
-      <Modal
-        radius="sm"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        placement="center"
-        size="lg"
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="text-xl font-bold">
-                Add Your Print Details
-              </ModalHeader>
-              <ModalBody className="pb-6">
-                <MultiStepForm />
-              </ModalBody>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
     </motion.section>
   );
 };

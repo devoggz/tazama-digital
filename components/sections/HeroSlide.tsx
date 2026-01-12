@@ -185,7 +185,7 @@ const HeroSlide = () => {
                     <ArrowRight />
                   </button> */}
 
-                  <MyButton onPress={onOpen} color="redglass">
+                  <MyButton fullWidth onPress={onOpen} color="redglass">
                     Get Started
                     <ArrowRight />
                   </MyButton>
@@ -210,7 +210,7 @@ const HeroSlide = () => {
                     </ModalContent>
                   </Modal>
 
-                  <MyButton color="glass">
+                  <MyButton fullWidth color="glass">
                     View Services
                     <ArrowRight />
                   </MyButton>
