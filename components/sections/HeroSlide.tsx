@@ -177,16 +177,8 @@ const HeroSlide = () => {
                   transition={{ delay: 0.5, duration: 0.5 }}
                   className="flex flex-col sm:flex-row justify-center gap-4 md:justify-start pt-4"
                 >
-                  {/* <button
-                    onClick={() => setIsOpen(true)}
-                    className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm md:text-base font-light px-5 py-3 rounded-sm transition-colors min-w-fit"
-                  >
-                    Get a Quote
-                    <ArrowRight />
-                  </button> */}
-
                   <MyButton fullWidth onPress={onOpen} color="redglass">
-                    Get Started
+                    Get a Quote Now
                     <ArrowRight />
                   </MyButton>
                   <Modal

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { Input, Textarea } from "@heroui/input";
 import { Form } from "@heroui/form";
 import { Button, addToast, Select, SelectItem, Progress } from "@heroui/react";
-import { ArrowRight, ArrowLeft, ResetIcon } from "../icons";
+import { ArrowRight, ResetIcon } from "../icons";
 import {
   finishes,
   weights,
@@ -51,7 +51,6 @@ export default function MultiStepForm() {
     const service = formData.service as PrintingService;
 
     if (!length || !width || !service) return null;
-
     const area = length * width;
 
     if (service === "digital") {
@@ -59,12 +58,10 @@ export default function MultiStepForm() {
         PRICING.digital.paperType[
           formData.paperType as keyof typeof PRICING.digital.paperType
         ] || 0;
-
       const weight =
         PRICING.digital.weight[
           formData.weight as keyof typeof PRICING.digital.weight
         ] || 0;
-
       const finish =
         PRICING.digital.finish[
           formData.finish as keyof typeof PRICING.digital.finish
@@ -78,7 +75,6 @@ export default function MultiStepForm() {
         PRICING.large.material[
           formData.material as keyof typeof PRICING.large.material
         ] || 0;
-
       const finish =
         PRICING.large.finish[
           formData.finish as keyof typeof PRICING.large.finish
@@ -99,13 +95,9 @@ export default function MultiStepForm() {
       case 2:
         return formData.length && formData.width;
       case 3:
-        if (formData.service === "digital") {
-          return formData.paperType && formData.weight && formData.finish;
-        }
-        if (formData.service === "large") {
-          return formData.material && formData.finish;
-        }
-        return false;
+        return formData.service === "digital"
+          ? formData.paperType && formData.weight && formData.finish
+          : formData.material && formData.finish;
       case 4:
         return formData.quantity;
       default:
@@ -119,15 +111,13 @@ export default function MultiStepForm() {
     } else {
       addToast({
         title: "Required Fields",
-        description: "Please fill in all required fields before proceeding.",
+        description: "Please complete all required fields.",
         color: "warning",
       });
     }
   };
 
-  const handleBack = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
-  };
+  const handleBack = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -135,7 +125,7 @@ export default function MultiStepForm() {
     if (!totalPrice || totalPrice <= 0) {
       addToast({
         title: "Invalid Quote",
-        description: "Please fill in all required fields to generate a quote.",
+        description: "Please complete the form to generate a quote.",
         color: "danger",
       });
       return;
@@ -146,8 +136,8 @@ export default function MultiStepForm() {
       JSON.stringify({
         service: formData.service,
         product: formData.product,
-        totalPrice: totalPrice,
-        formData: formData,
+        totalPrice,
+        formData,
       })
     );
 
@@ -159,7 +149,7 @@ export default function MultiStepForm() {
     setCurrentStep(1);
     addToast({
       title: "Form Reset",
-      description: "All fields have been cleared.",
+      description: "All selections cleared.",
       color: "success",
     });
   };
@@ -168,37 +158,44 @@ export default function MultiStepForm() {
   const progressValue = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="max-w-lg w-full">
-      {/* Progress Bar */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-2">
+    <div className="w-full max-w-2xl space-y-8">
+      {/* Progress Header */}
+      <div className="w-full space-y-2">
+        <div className="flex justify-between items-center w-full">
           <span className="text-sm font-medium">
             Step {currentStep} of {totalSteps}
           </span>
-          <span className="text-sm text-default-500">
-            {Math.round(progressValue)}% Complete
-          </span>
+
+          <Button
+            variant="light"
+            size="sm"
+            isIconOnly
+            onPress={handleReset}
+            aria-label="Reset form"
+          >
+            <ResetIcon />
+          </Button>
         </div>
-        <Progress value={progressValue} color="danger" className="mb-2" />
-        <p className="text-xs text-default-400">
-          {currentStep === 1 && "Select your printing service and product"}
-          {currentStep === 2 && "Enter your dimensions"}
-          {currentStep === 3 && "Choose your specifications"}
-          {currentStep === 4 && "Review and finalize your order"}
+
+        <Progress value={progressValue} color="danger" className="w-full" />
+        <p className="text-xs text-default-500">
+          {currentStep === 1 && "Choose a service and product"}
+          {currentStep === 2 && "Define print dimensions"}
+          {currentStep === 3 && "Select material and finishing options"}
+          {currentStep === 4 && "Confirm quantity and review order"}
         </p>
       </div>
 
-      <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        {/* Step 1: Service & Product */}
+      <Form className="w-full space-y-10" onSubmit={handleSubmit}>
         {currentStep === 1 && (
-          <div className="space-y-4 animate-in fade-in duration-300 w-full">
-            <h3 className="text-lg font-semibold mb-4">Service & Product</h3>
+          <section className="w-full space-y-6">
+            <h2 className="text-xl font-semibold">Service & Product</h2>
 
             <Select
               label="Printing Service"
-              fullWidth
               name="service"
               variant="underlined"
+              fullWidth
               selectedKeys={formData.service ? [formData.service] : []}
               onChange={(e) => handleInputChange(e as any)}
               isRequired
@@ -210,9 +207,9 @@ export default function MultiStepForm() {
             {service && (
               <Select
                 label="Product"
-                fullWidth
                 name="product"
                 variant="underlined"
+                fullWidth
                 selectedKeys={formData.product ? [formData.product] : []}
                 onChange={(e) => handleInputChange(e as any)}
                 isRequired
@@ -222,19 +219,19 @@ export default function MultiStepForm() {
                 ))}
               </Select>
             )}
-          </div>
+          </section>
         )}
 
-        {/* Step 2: Dimensions */}
         {currentStep === 2 && (
-          <div className="w-full space-y-4 animate-in fade-in duration-300">
-            <h3 className="text-lg font-semibold mb-4">Dimensions</h3>
+          <section className="w-full space-y-6">
+            <h2 className="text-xl font-semibold">Dimensions</h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 w-full">
               <Input
                 label="Length (mm)"
                 name="length"
                 type="number"
+                fullWidth
                 value={formData.length || ""}
                 onChange={handleInputChange}
                 isRequired
@@ -243,24 +240,25 @@ export default function MultiStepForm() {
                 label="Width (cm)"
                 name="width"
                 type="number"
+                fullWidth
                 value={formData.width || ""}
                 onChange={handleInputChange}
                 isRequired
               />
             </div>
-          </div>
+          </section>
         )}
 
-        {/* Step 3: Specifications */}
         {currentStep === 3 && (
-          <div className="w-full space-y-4 animate-in fade-in duration-300">
-            <h3 className="text-lg font-semibold mb-4">Specifications</h3>
+          <section className="w-full space-y-6">
+            <h2 className="text-xl font-semibold">Specifications</h2>
 
             {service === "digital" && (
               <>
                 <Select
                   label="Paper Type"
                   name="paperType"
+                  fullWidth
                   selectedKeys={formData.paperType ? [formData.paperType] : []}
                   onChange={(e) => handleInputChange(e as any)}
                   isRequired
@@ -273,6 +271,7 @@ export default function MultiStepForm() {
                 <Select
                   label="Paper Weight"
                   name="weight"
+                  fullWidth
                   selectedKeys={formData.weight ? [formData.weight] : []}
                   onChange={(e) => handleInputChange(e as any)}
                   isRequired
@@ -285,6 +284,7 @@ export default function MultiStepForm() {
                 <Select
                   label="Finish"
                   name="finish"
+                  fullWidth
                   selectedKeys={formData.finish ? [formData.finish] : []}
                   onChange={(e) => handleInputChange(e as any)}
                   isRequired
@@ -301,6 +301,7 @@ export default function MultiStepForm() {
                 <Select
                   label="Material"
                   name="material"
+                  fullWidth
                   selectedKeys={formData.material ? [formData.material] : []}
                   onChange={(e) => handleInputChange(e as any)}
                   isRequired
@@ -312,6 +313,7 @@ export default function MultiStepForm() {
                 <Select
                   label="Finish"
                   name="finish"
+                  fullWidth
                   selectedKeys={formData.finish ? [formData.finish] : []}
                   onChange={(e) => handleInputChange(e as any)}
                   isRequired
@@ -321,45 +323,44 @@ export default function MultiStepForm() {
                 </Select>
               </>
             )}
-          </div>
+          </section>
         )}
 
-        {/* Step 4: Review & Additional Info */}
         {currentStep === 4 && (
-          <div className="space-y-4 animate-in fade-in duration-300">
-            <h3 className="text-lg font-semibold mb-4">Finalize Order</h3>
+          <section className="w-full space-y-6">
+            <h2 className="text-xl font-semibold">Finalize Order</h2>
 
             <Input
               label="Quantity"
               name="quantity"
               type="number"
+              fullWidth
               value={formData.quantity || "1"}
-              defaultValue="1"
               onChange={handleInputChange}
               isRequired
             />
 
             <Textarea
               label="Additional Instructions"
-              radius="sm"
               name="description"
+              fullWidth
               value={formData.description || ""}
               onChange={handleInputChange}
-              placeholder="Any special requirements or instructions..."
+              placeholder="Optional notes or special instructions"
             />
 
-            {/* Order Summary */}
-            <div className="bg-default-100 p-4 rounded-lg space-y-2">
-              <h4 className="font-semibold text-sm mb-3">Order Summary</h4>
-              <div className="space-y-1 text-sm">
+            <div className="w-full rounded-lg border bg-default-100 p-4 space-y-2">
+              <h4 className="text-sm font-semibold">Order Summary</h4>
+
+              <div className="text-sm space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-default-500">Service:</span>
+                  <span>Service</span>
                   <span className="font-medium capitalize">
                     {formData.service}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-default-500">Product:</span>
+                  <span>Product</span>
                   <span className="font-medium">
                     {
                       PRODUCTS[service!]?.find(
@@ -369,37 +370,36 @@ export default function MultiStepForm() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-default-500">Dimensions:</span>
+                  <span>Dimensions</span>
                   <span className="font-medium">
-                    {formData.length} x {formData.width}
+                    {formData.length} × {formData.width}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-default-500">Quantity:</span>
-                  <span className="font-medium">{formData.quantity || 1}</span>
+                  <span>Quantity</span>
+                  <span className="font-medium">{formData.quantity}</span>
                 </div>
               </div>
             </div>
 
             {totalPrice !== null && (
-              <div className="flex justify-between w-full items-center p-4 rounded-lg bg-danger/10 border-2 border-danger">
-                <span className="font-bold">Estimated Total (KES)</span>
+              <div className="w-full flex justify-between items-center rounded-lg border-2 border-danger bg-danger/10 p-4">
+                <span className="font-semibold">Estimated Total (KES)</span>
                 <span className="text-2xl font-bold text-danger">
                   {totalPrice.toLocaleString()}
                 </span>
               </div>
             )}
-          </div>
+          </section>
         )}
 
-        {/* Navigation Buttons */}
-        <div className="w-full flex gap-2 mt-6">
+        {/* Footer Navigation */}
+        <div className="w-full flex gap-3 pt-6">
           {currentStep > 1 && (
             <Button
               type="button"
-              onPress={handleBack}
               variant="bordered"
-              radius="sm"
+              onPress={handleBack}
               startContent={<ArrowLeftIcon />}
             >
               Back
@@ -409,35 +409,23 @@ export default function MultiStepForm() {
           {currentStep < totalSteps ? (
             <Button
               type="button"
-              onPress={handleNext}
               color="danger"
               fullWidth
-              radius="sm"
+              onPress={handleNext}
               endContent={<ArrowRight />}
             >
-              Next
+              Continue
             </Button>
           ) : (
             <Button
               type="submit"
               color="danger"
               fullWidth
-              radius="sm"
               endContent={<ArrowRight />}
             >
               Proceed to Payment
             </Button>
           )}
-
-          <Button
-            type="button"
-            onPress={handleReset}
-            variant="light"
-            radius="sm"
-            isIconOnly
-          >
-            <ResetIcon />
-          </Button>
         </div>
       </Form>
     </div>

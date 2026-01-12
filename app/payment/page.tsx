@@ -56,7 +56,7 @@ export default function PaymentPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-zinc-50 to-zinc-100 py-12 px-6">
+    <main className="min-h-screen  py-12 ">
       <div className="max-w-7xl mx-auto">
         <PaymentForm orderData={orderData} onBack={handleBack} />
       </div>

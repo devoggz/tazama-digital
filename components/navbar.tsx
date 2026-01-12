@@ -12,11 +12,12 @@ import {
   Input,
   Button,
   Badge,
+  User,
 } from "@heroui/react";
 import NextLink from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, ShoppingCart } from "lucide-react";
+import { Facebook, Instagram, ShoppingCart, User2Icon } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import { siteConfig } from "@/config/site";
@@ -31,6 +32,7 @@ import {
 } from "@/components/icons";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
+import { MyButton } from "./Button";
 
 const ArrowUp = ({ className = "" }) => (
   <svg
@@ -264,7 +266,7 @@ export const Navbar = () => {
         </NavbarContent>
 
         <NavbarMenu>
-          <div className="my-auto">{searchInput}</div>
+          <div className="my-6">{searchInput}</div>
 
           <div className="mx-4 mt-6 flex flex-col gap-4">
             {siteConfig.navMenuItems.map((item, index) => (
@@ -279,6 +281,7 @@ export const Navbar = () => {
                 </Link>
               </NavbarMenuItem>
             ))}
+
             <Button
               onPress={() => {
                 setIsMenuOpen(false);

@@ -88,11 +88,11 @@ export default function About() {
             radius="sm"
             variant="light"
             fullWidth
-            endContent={<ArrowRight size={16} />}
+            endContent={<ArrowRight size={24} />}
             className="mt-16"
           >
             <span className="flex w-full items-center justify-between ">
-              <span className=" text-sm">View Collection</span>
+              <span className=" text-sm">Learn More</span>
             </span>
           </Button>
         </motion.div>

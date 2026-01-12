@@ -3,21 +3,75 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
-import { button as buttonStyles } from "@heroui/theme";
-
-import { CircleLeft, CircleRight } from "../icons";
 import {
   Modal,
   ModalContent,
   ModalBody,
-  Button,
-  useDisclosure,
   ModalHeader,
-  Link,
+  useDisclosure,
 } from "@heroui/react";
-import { ArrowUpRight, PrinterCheckIcon } from "lucide-react";
-import MultiStepForm from "../forms/MultiStepForm";
 import { MyButton } from "../Button";
+import MultiStepForm from "../forms/MultiStepForm";
+
+/* ---------- Icons ---------- */
+
+const ChevronLeft = ({ size = 20 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+const ChevronRight = ({ size = 20 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M9 6l6 6-6 6" />
+  </svg>
+);
+
+const PrinterCheckIcon = ({ size = 18 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M6 9V2h12v7" />
+    <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+    <path d="M6 14h12v8H6z" />
+    <path d="M9 17l2 2 4-4" />
+  </svg>
+);
+
+const ArrowUpRight = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
+    <path d="M7 17L17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+);
+
+/* ---------- Data ---------- */
 
 const services = [
   {
@@ -44,7 +98,6 @@ const services = [
       "Portable and professional displays perfect for events, trade shows, and retail spaces.",
     image: "/images/rollup4.jpg",
   },
-
   {
     service: "Wallpapers",
     description:
@@ -52,6 +105,8 @@ const services = [
     image: "/images/wall.jpg",
   },
 ];
+
+/* ---------- Animations ---------- */
 
 const sectionFade: Variants = {
   hidden: { opacity: 0 },
@@ -99,6 +154,8 @@ const imageFade: Variants = {
   },
 };
 
+/* ---------- Component ---------- */
+
 const LargeFormat = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -117,25 +174,23 @@ const LargeFormat = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="max-w-7xl mx-auto mb-16 sm:px-6"
+      className="max-w-7xl mx-auto mb-16"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden shadow-xl rounded-lg bg-white dark:bg-zinc-900">
-        {/* Left Panel - Content */}
+        {/* Left Panel */}
         <motion.div
           variants={contentSlide}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className=" lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 min-h-[400px] lg:min-h-[600px]"
+          className="px-5 py-8 sm:px-8 sm:py-10 lg:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-zinc-200 dark:border-zinc-800 min-h-[400px] lg:min-h-[600px]"
         >
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-zinc-100">
-              Large Format
-              <span className="block font-light mt-1 text-zinc-600 dark:text-zinc-400">
-                Printing Services
-              </span>
-            </p>
-          </div>
+          <p className="text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-zinc-100">
+            Large Format
+            <span className="block font-light mt-1 text-zinc-600 dark:text-zinc-400">
+              Printing Services
+            </span>
+          </p>
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -144,133 +199,100 @@ const LargeFormat = () => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="space-y-4 sm:space-y-6 flex-1 flex flex-col justify-center"
+              className="space-y-5 flex-1 flex flex-col justify-center"
             >
               <span className="inline-block h-1 w-16 rounded-full bg-[#F31260]" />
-
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                 {current.service}
               </h2>
-
-              <p className="text-sm sm:text-base md:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-md">
+              <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-md">
                 {current.description}
               </p>
             </motion.div>
           </AnimatePresence>
 
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="mt-6 sm:mt-8"
+          <MyButton
+            onPress={onOpen}
+            color="glass"
+            size="xl"
+            radius="sm"
+            fullWidth
+            endContent={<PrinterCheckIcon />}
+            className="font-semibold mt-6"
           >
-            <MyButton
-              onPress={onOpen}
-              color="glass"
-              size="xl"
-              radius="sm"
-              fullWidth
-              endContent={<PrinterCheckIcon size={18} />}
-              className="font-semibold"
-            >
-              Create your Order Now
-            </MyButton>
-            <Modal
-              radius="sm"
-              isOpen={isOpen}
-              onOpenChange={onOpenChange}
-              placement="center"
-              size="lg"
-            >
-              <ModalContent>
-                {(onClose) => (
-                  <>
-                    <ModalHeader className="text-xl font-bold">
-                      Add Your Print Details
-                    </ModalHeader>
-                    <ModalBody className="pb-6">
-                      <MultiStepForm />
-                    </ModalBody>
-                  </>
-                )}
-              </ModalContent>
-            </Modal>
-          </motion.div>
+            Create your Order Now
+          </MyButton>
+
+          <Modal
+            placement="center"
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            size="lg"
+          >
+            <ModalContent>
+              <ModalHeader className="text-xl font-bold">
+                Add Your Print Details
+              </ModalHeader>
+              <ModalBody className="pb-6">
+                <MultiStepForm />
+              </ModalBody>
+            </ModalContent>
+          </Modal>
         </motion.div>
 
-        {/* Right Panel - Image Carousel */}
+        {/* Right Panel */}
         <motion.div
           variants={imageSlide}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative bg-black flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]"
+          className="relative bg-zinc-100 dark:bg-zinc-950 overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]"
         >
-          {/* Image Container */}
-          <div className="absolute inset-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.image}
-                variants={imageFade}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="relative w-full h-full"
-              >
-                <Image
-                  src={current.image}
-                  alt={current.service}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              </motion.div>
-            </AnimatePresence>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.image}
+              variants={imageFade}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="absolute inset-0"
+            >
+              <Image
+                src={current.image}
+                alt={current.service}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/5 to-transparent" />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* View All */}
+          <a
+            href="/large-format-printing"
+            className="absolute top-4 right-4 z-10 inline-flex items-center gap-2 text-sm text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 px-4 py-2 rounded-full"
+          >
+            View All <ArrowUpRight />
+          </a>
+
+          {/* Navigation */}
+          <div className="absolute bottom-5 right-5 z-20 flex gap-3">
+            <button
+              onClick={handlePrev}
+              className="h-9 w-9 rounded-full bg-white/70 backdrop-blur flex items-center justify-center hover:bg-white transition"
+            >
+              <ChevronLeft />
+            </button>
+            <button
+              onClick={handleNext}
+              className="h-9 w-9 rounded-full bg-white/70 backdrop-blur flex items-center justify-center hover:bg-white transition"
+            >
+              <ChevronRight />
+            </button>
           </div>
 
-          {/* View All Button */}
-          <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-10">
-            <Link
-              isExternal
-              className={buttonStyles({
-                radius: "full",
-                variant: "flat",
-                class:
-                  "text-xs sm:text-sm font-light text-white bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 px-3 sm:px-4 py-2 min-w-fit",
-              })}
-              href="/large-format-printing"
-            >
-              View All
-              <ArrowUpRight />
-            </Link>
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 z-20 flex items-center gap-2 bg-black/60 rounded-full backdrop-blur-md p-1.5 sm:p-2">
-            <Button
-              onPress={handlePrev}
-              isIconOnly
-              radius="full"
-              variant="light"
-              className="hover:scale-110 transition-transform"
-              aria-label="Previous service"
-            >
-              <CircleLeft size={28} color="white" />
-            </Button>
-
-            <Button
-              onPress={handleNext}
-              isIconOnly
-              radius="full"
-              variant="light"
-              className="hover:scale-110 transition-transform"
-              aria-label="Next service"
-            >
-              <CircleRight size={28} color="white" />
-            </Button>
-          </div>
-
-          {/* Mobile Service Indicator */}
+          {/* Mobile Indicator */}
           <div className="lg:hidden absolute bottom-4 left-4 z-20 flex gap-1.5">
             {services.map((_, index) => (
               <button
@@ -279,7 +301,6 @@ const LargeFormat = () => {
                 className={`h-1.5 rounded-full transition-all ${
                   currentIndex === index ? "w-8 bg-white" : "w-1.5 bg-white/40"
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
