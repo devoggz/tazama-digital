@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import heroImage from "@/public/images/macro.jpg";
+import heroImage from "@/public/images/eyes4.jpg";
 import Image from "next/image";
 import {
   Button,
@@ -13,10 +13,9 @@ import {
 } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowRightFromLine, ArrowRightIcon } from "lucide-react";
-import { ArrowIcon } from "../icons";
-import { button as buttonStyles } from "@heroui/theme";
-import { siteConfig } from "@/config/site";
+import { ArrowRightIcon } from "lucide-react";
+import MultiStepForm from "../forms/MultiStepForm";
+
 import DigitalForm from "../Calculators/DigitalForm";
 
 const HeroTwo = () => {
@@ -25,7 +24,7 @@ const HeroTwo = () => {
   const router = useRouter();
   return (
     <section className="relative overflow-hidden rounded-md">
-      <div className=" max-w-7xl mx-auto py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md mb-16 items-center h-min">
+      <div className=" max-w-7xl px-6 mx-auto py-24 grid grid-cols-1 lg:grid-cols-2 gap-20 rounded-md  items-center h-min ">
         {/* Background image with zoom effect */}
         <motion.div
           initial={{ scale: 1 }}
@@ -62,9 +61,9 @@ const HeroTwo = () => {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="inline-block"
             >
-              {/* <span className="text-sm md:text-base font-medium text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30 shadow-lg">
+              <span className="text-sm md:text-base font-medium text-white bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30 shadow-lg">
                 Karibu Tazama
-              </span> */}
+              </span>
             </motion.div>
 
             {/* Heading */}
@@ -76,7 +75,7 @@ const HeroTwo = () => {
             >
               Digital & Large Format Printing{" "}
               <span className="block text-3xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-white/90 mt-2">
-                in Nairobi, Kenya...
+                in Nairobi, Kenya
               </span>
             </motion.h1>
 
@@ -122,7 +121,7 @@ const HeroTwo = () => {
                         Add Your Print Details
                       </ModalHeader>
                       <ModalBody className="pb-6">
-                        <DigitalForm />
+                        <MultiStepForm />
                       </ModalBody>
                     </>
                   )}

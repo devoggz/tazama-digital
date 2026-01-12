@@ -17,6 +17,7 @@ import {
 } from "@heroui/react";
 import DigitalForm from "../Calculators/DigitalForm";
 import { ArrowBigRight, ArrowUpRight, PrinterCheckIcon } from "lucide-react";
+import MultiStepForm from "../forms/MultiStepForm";
 
 const services = [
   {
@@ -161,7 +162,6 @@ const LargeFormat = () => {
               size="lg"
               fullWidth
               radius="sm"
-              variant="bordered"
               endContent={<PrinterCheckIcon size={18} />}
               className="font-semibold mt-8 mb-8"
             >
@@ -204,7 +204,7 @@ const LargeFormat = () => {
             </AnimatePresence>
           </div>
 
-          <div className="absolute inline-flex top-12 right-12 ">
+          <div className="absolute inline-flex top-4 right-4 ">
             <Link
               isExternal
               className={buttonStyles({
@@ -262,7 +262,7 @@ const LargeFormat = () => {
                 Add Your Print Details
               </ModalHeader>
               <ModalBody className="pb-6">
-                <DigitalForm />
+                <MultiStepForm />
               </ModalBody>
             </>
           )}

@@ -111,10 +111,10 @@ const DigitalPrinting = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="bg-zinc-50 text-zinc-900 p-8 lg:p-12 flex flex-col justify-between border-r border-zinc-200"
+          className="  p-8 lg:p-12 flex flex-col justify-between border-r border-zinc-200"
         >
           <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-zinc-600">
+            <p className="text-sm font-bold uppercase tracking-wide ">
               Digital Printing
               <span className="block font-light mt-1">Services</span>
             </p>
@@ -131,11 +131,11 @@ const DigitalPrinting = () => {
             >
               <span className="inline-block h-1 w-16 rounded-full mt-8 bg-[#F31260]" />
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ">
                 {current.service}
               </h2>
 
-              <p className="text-base md:text-lg text-zinc-700 leading-relaxed max-w-md">
+              <p className="text-base md:text-lg  leading-relaxed max-w-md">
                 {current.description}
               </p>
             </motion.div>
@@ -148,7 +148,6 @@ const DigitalPrinting = () => {
               size="lg"
               fullWidth
               radius="sm"
-              variant="bordered"
               endContent={<PrinterCheckIcon size={18} />}
               className="font-semibold mt-8 mb-8"
             >
@@ -191,7 +190,7 @@ const DigitalPrinting = () => {
             </AnimatePresence>
           </div>
 
-          <div className="absolute inline-flex top-12 right-12 ">
+          <div className="absolute inline-flex top-4 right-4 ">
             <Link
               isExternal
               className={buttonStyles({
