@@ -46,7 +46,7 @@ export default function About() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="py-28 bg-zinc-50 shadow-xl rounded-sm mb-12"
+      className="py-28 shadow-lg rounded-sm mb-12"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 justify-between gap-16 lg:gap-24">
         {/* Copy */}

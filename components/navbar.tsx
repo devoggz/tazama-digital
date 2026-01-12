@@ -111,11 +111,13 @@ export const Navbar = () => {
             </div>
           </div>
           <div>
-            <div className="flex cursor-pointer items-center gap-2">
-              {/* <span className="font-bold">Follow Us</span> */}
-              <TwitterIcon size={16} />
-              <Facebook size={16} />
-              <Instagram size={16} />
+            <div className="hidden md:block">
+              <div className="flex cursor-pointer items-center gap-2">
+                {/* <span className="font-bold">Follow Us</span> */}
+                <TwitterIcon size={16} />
+                <Facebook size={16} />
+                <Instagram size={16} />
+              </div>
             </div>
           </div>
         </div>
