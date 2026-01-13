@@ -5,10 +5,12 @@ import LargeFormat from "@/components/sections/LargeFormat";
 import LogoTicker from "@/components/sections/LogoTicker";
 import HeroTwo from "@/components/sections/HeroTwo";
 import HeroSlide from "@/components/sections/HeroSlide";
+import HeroParallax from "@/components/sections/HeroParallax";
 
 export default function Home() {
   return (
     <main>
+      {/* <HeroParallax /> */}
       <HeroSlide />
       {/* <HeroTwo /> */}
       <About />
