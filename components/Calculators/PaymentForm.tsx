@@ -274,13 +274,17 @@ export default function PaymentForm({ orderData, onBack }: PaymentFormProps) {
                 <Input
                   label="M-Pesa Phone Number"
                   name="phoneNumber"
-                  placeholder="254712345678"
+                  placeholder="712345678"
                   value={mpesaData.phoneNumber}
                   onChange={handleMpesaInputChange}
                   isRequired
-                  description="Enter your Safaricom number (e.g., 254712345678)"
+                  description="Enter your Safaricom number without country code"
                   startContent={
-                    <span className="text-default-400 text-sm">+</span>
+                    <div className="flex items-center gap-2 pointer-events-none">
+                      <span className="text-xl">🇰🇪</span>
+                      <span className="text-default-600 font-medium">+254</span>
+                      <Divider orientation="vertical" className="h-6" />
+                    </div>
                   }
                 />
 
