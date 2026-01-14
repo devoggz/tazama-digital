@@ -254,8 +254,8 @@ export default function PaymentForm({ orderData, onBack }: PaymentFormProps) {
               }
             >
               <Form className="mt-6 space-y-4" onSubmit={handleMpesaSubmit}>
-                <div className="bg-success-50 border border-success-200 rounded-lg p-4 mb-4">
-                  <div className="flex items-start gap-3">
+                <div className="bg-success-50 border border-success-200 rounded-lg p-4 mb-4 w-full">
+                  <div className="flex items-start gap-3 ">
                     <Smartphone size={20} className="text-success-600 mt-1" />
                     <div>
                       <p className="font-semibold text-success-800 mb-1">
@@ -293,7 +293,7 @@ export default function PaymentForm({ orderData, onBack }: PaymentFormProps) {
                   description="Optional reference for your records"
                 />
 
-                <div className="bg-default-100 rounded-lg p-4 flex items-center justify-between">
+                <div className="bg-default-100 rounded-lg p-4 flex items-center justify-between w-full">
                   <div>
                     <p className="text-sm text-default-600">Amount to Pay</p>
                     <p className="text-2xl font-bold">
@@ -314,7 +314,7 @@ export default function PaymentForm({ orderData, onBack }: PaymentFormProps) {
                   fullWidth
                   isLoading={isProcessing}
                   startContent={!isProcessing && <Smartphone size={18} />}
-                  className="mt-6"
+                  className="mt-6 text-white"
                 >
                   {isProcessing ? "Sending Push..." : "Send M-Pesa Push"}
                 </Button>

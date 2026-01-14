@@ -122,7 +122,7 @@ export const Navbar = () => {
           </div>
           <div>
             <div className="flex cursor-pointer items-center gap-2">
-              {/* <span className="font-bold">Follow Us</span> */}
+              <p className="font-bold">Follow Us</p>
               <TwitterIcon size={16} />
               <Facebook size={16} />
               <Instagram size={16} />

@@ -3,6 +3,7 @@ import { motion, Variants } from "framer-motion";
 import { PrintIcon, BoltIcon, ClockIcon } from "../icons";
 import { Button } from "@heroui/react";
 import { ArrowRight, ArrowRightIcon } from "lucide-react";
+import { MyButton } from "../Button";
 
 const sectionFade: Variants = {
   hidden: { opacity: 0 },
@@ -70,7 +71,7 @@ export default function About() {
             variants={fadeUp}
             className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight "
           >
-            Built for brands that respect the details
+            Why Choose Tazama Digital Studios?
           </motion.h2>
 
           <motion.p
@@ -82,6 +83,7 @@ export default function About() {
             service for all printing needs – from startups to established
             brands.
           </motion.p>
+
           <Button
             color="danger"
             size="lg"

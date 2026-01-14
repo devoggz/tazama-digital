@@ -152,10 +152,10 @@ const HeroSlide = () => {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.7 }}
-                  className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight"
+                  className="text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight"
                 >
                   {slides[currentSlide].title}{" "}
-                  <span className="block text-3xl sm:text-3xl md:text-4xl lg:text-4xl font-semibold text-white/90 mt-2">
+                  <span className="block text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-semibold text-white/90 mt-2">
                     {slides[currentSlide].subtitle}
                   </span>
                 </motion.h1>

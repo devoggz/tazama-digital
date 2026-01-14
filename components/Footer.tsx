@@ -1,62 +1,116 @@
 "use client";
+
 import NextLink from "next/link";
+import { Link } from "@heroui/react";
+import {
+  TazamaLogo,
+  PhoneIcon,
+  MailIcon,
+  TwitterIcon,
+} from "@/components/icons";
+import SubscribeNewsletter from "./sections/SubscribeNewsletter";
 import Image from "next/image";
-import { PhoneIcon, MailIcon } from "@/components/icons";
-import { ArrowUpRight } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
     <footer className="bg-slate-950 text-slate-300">
-      <div className="max-w-7xl mx-auto px-6 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-5 gap-10">
-        {/* Brand + Contact */}
-        <div className="lg:col-span-2 space-y-6 text-center lg:text-left">
-          <NextLink
-            href="/"
-            className="flex items-center justify-center lg:justify-start"
-          >
+      <div className="max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        {/* Brand */}
+        <div className="lg:col-span-2 space-y-8">
+          <NextLink href="/" className="flex items-center gap-2">
             <Image
               src="/images/logo-tagW.svg"
               alt="Tazama Logo"
-              width={150}
-              height={80}
+              width={180}
+              height={100}
             />
           </NextLink>
 
-          <p className="text-sm text-slate-400 max-w-sm mx-auto lg:mx-0 leading-relaxed">
-            Premium digital and large format printing for brands that value
-            clarity, craft, and consistency.
+          <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
+            Premium digital and large format printing for brands that care about
+            quality, detail, and impact.
           </p>
 
-          <div className="flex flex-col gap-3 items-center lg:items-start text-sm">
-            <div className="flex items-center gap-3">
-              <PhoneIcon size={14} />
-              <span>+254 715 829 262</span>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <MailIcon size={14} />
-              <span>info@tazamadigital.co.ke</span>
-            </div>
+          <div className="flex cursor-pointer items-center gap-2">
+            <p className="font-bold">Follow Us</p>
+            <TwitterIcon size={16} />
+            <Facebook size={16} />
+            <Instagram size={16} />
           </div>
         </div>
 
-        {/* Navigation Blocks */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-8 lg:col-span-3">
-          {/*  */}
-        </div>
+        {/* Navigation */}
+        <FooterColumn
+          title="Navigate"
+          items={[
+            { label: "Home", href: "/" },
+            { label: "About Us", href: "/" },
+            { label: "Portfolio", href: "/" },
+            { label: "Contact", href: "/" },
+          ]}
+        />
+
+        {/* Products */}
+        <FooterColumn
+          title="Our Products"
+          items={[
+            { label: "Keychains", href: "/" },
+            { label: "Custom Stickers", href: "/" },
+            { label: "Mugs and Bottles", href: "/" },
+            { label: "Booklets & Magazines", href: "/" },
+          ]}
+        />
+
+        {/* Services */}
+        <FooterColumn
+          title="Services"
+          items={[
+            { label: "Digital Printing", href: "/" },
+            { label: "Large Format", href: "/" },
+            { label: "Branding", href: "/" },
+            { label: "Design Support", href: "/" },
+          ]}
+        />
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-500">
           <span>
             © {new Date().getFullYear()} Tazama Digital. All rights reserved.
           </span>
+
           <span className="flex items-center gap-1">
-            Powered by <span className="text-pink-500">KalaWaks</span>
+            Powered by <span className="text-primary">KalaWaks</span>
           </span>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({
+  title,
+  items,
+}: {
+  title: string;
+  items: { label: string; href: string }[];
+}) {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold text-white mb-4">{title}</h4>
+      <ul className="space-y-2 text-sm">
+        {items.map((item) => (
+          <li key={item.label}>
+            <NextLink
+              href={item.href}
+              className="hover:text-white transition-colors"
+            >
+              {item.label}
+            </NextLink>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
