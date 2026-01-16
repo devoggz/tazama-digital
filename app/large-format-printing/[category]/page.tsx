@@ -1,9 +1,8 @@
-// app/large-format-printing/[category]/page.tsx
 "use client";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
-import { Card, CardHeader, CardFooter, Image, Button } from "@heroui/react";
+import { Card, CardFooter, Image, Button } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import { largeFormatPrintingData } from "@/app/data/large-format-printing";
 

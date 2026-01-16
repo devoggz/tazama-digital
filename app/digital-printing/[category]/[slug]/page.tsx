@@ -1,13 +1,9 @@
-// app/digital-printing/[category]/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { digitalPrintingData } from "@/app/data/digital-printing";
 import DigitalPrintingForm from "@/components/forms/DigitalPrintingForm";
 import { Sparkles, Droplets, Layers, ShieldCheck, Palette } from "lucide-react";
 
-/* --------------------------------
-   Icon mapping for finishes
---------------------------------- */
 const finishIcons: Record<string, React.ReactNode> = {
   Matte: <Layers size={18} />,
   Gloss: <Sparkles size={18} />,
@@ -23,7 +19,6 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ category: string; slug: string }>;
 }) {
-  // ✅ Await params before using
   const { category: categorySlug, slug } = await params;
 
   const category = digitalPrintingData[categorySlug];

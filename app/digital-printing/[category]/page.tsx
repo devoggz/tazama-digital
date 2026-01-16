@@ -35,11 +35,7 @@ export default function CategoryPage({ params }: Props) {
               isFooterBlurred
               className="w-full h-[350px] group overflow-hidden"
             >
-              <CardHeader className="absolute z-10 top-3 flex-col items-start">
-                {/* <p className="text-tiny text-white/80 uppercase font-bold bg-black/20 px-2 py-1 rounded">
-                  {category.title}
-                </p> */}
-              </CardHeader>
+              <CardHeader className="absolute z-10 top-3 flex-col items-start"></CardHeader>
               <Image
                 removeWrapper
                 alt={item.title}

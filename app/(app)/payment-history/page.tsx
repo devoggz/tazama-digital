@@ -51,7 +51,6 @@ export default function PaymentsHistoryPage() {
   const [filterStatus, setFilterStatus] = React.useState("all");
   const [filterMethod, setFilterMethod] = React.useState("all");
 
-  // Generate payment records from orders
   const payments: Payment[] = [
     {
       id: "PAY-2024-001",

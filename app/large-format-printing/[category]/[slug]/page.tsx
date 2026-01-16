@@ -1,13 +1,9 @@
-// app/large-format-printing/[category]/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { largeFormatPrintingData } from "@/app/data/large-format-printing";
 import LargeFormatPrintingForm from "@/components/forms/LargeFormatPrintingForm";
 import { Sparkles, Droplets, Layers, ShieldCheck, Palette } from "lucide-react";
 
-/* --------------------------------
-   Icon mapping for finishes
---------------------------------- */
 const finishIcons: Record<string, React.ReactNode> = {
   Matte: <Layers size={18} />,
   Gloss: <Sparkles size={18} />,
@@ -29,7 +25,6 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ category: string; slug: string }>;
 }) {
-  // ✅ Await params before using
   const { category: categorySlug, slug } = await params;
 
   const category = largeFormatPrintingData[categorySlug];

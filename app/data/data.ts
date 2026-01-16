@@ -103,6 +103,4 @@ export const businessCards = {
     image: "/images/cardUV.avif",
     finishes: ["Matte + Spot UV"],
   },
-
-  // add the rest here
 };

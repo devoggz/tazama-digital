@@ -1,4 +1,3 @@
-// app/large-format-printing/page.tsx
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";

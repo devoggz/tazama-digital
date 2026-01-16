@@ -104,7 +104,6 @@ export default function DigitalForm() {
       })
     );
 
-    // Navigate to payment page
     router.push("/payment");
   };
 

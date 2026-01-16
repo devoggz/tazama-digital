@@ -38,7 +38,6 @@ export default function Support() {
   });
   const [orderTrackingId, setOrderTrackingId] = React.useState("");
 
-  // Mock order data
   const recentOrders = [
     {
       id: "ORD-2024-001",

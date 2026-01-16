@@ -60,7 +60,6 @@ export default function CorporateAccountPage() {
     dataProcessing: false,
   });
 
-  // Mock corporate account data
   const corporateStats = {
     accountBalance: 45000,
     creditLimit: 500000,
